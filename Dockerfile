@@ -1,24 +1,22 @@
 FROM resin/raspberrypi3-golang
 MAINTAINER Stefan Mueller <stmu@stmu.net>
 
-RUN apt-get update && apt-get install nodejs
+
+RUN wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-armv7l.tar.xz
+RUN tar -xvf node-v6.10.3-linux-armv7l.tar.xz
+RUN cd node-v6.10.3-linux-armv7l
+RUN cp -R * /usr/local/
 
 # Get source code
 RUN go get github.com/grafana/grafana
 
-# Building the backend
-cd $GOPATH/src/github.com/grafana/grafana
+RUN cd $GOPATH/src/github.com/grafana/grafana
 RUN go run build.go setup
-RUN $GOPATH/bin/godep restore
 RUN go run build.go build
 
-RUN npm install
-RUN npm install -g grunt-cli
-RUN grunt
+RUN npm install -g yarn
+RUN yarn install --pure-lockfile
+RUN npm run build
 
-RUN  apt-get install ruby-dev build-essential
-RUN gem install fpm
-RUN go run build.go build package
-
-
-RUN dpkg -i $GOPATH/src/github.com/grafana/grafana/dist/grafana_x.x.x-prex_armhf 
+EXPOSE 3000
+CMD ["./bin/grafana-server"]
