@@ -5,9 +5,10 @@ MAINTAINER Stefan Mueller <stmu@stmu.net>
 RUN wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-armv7l.tar.xz
 RUN tar -xvf node-v6.10.3-linux-armv7l.tar.xz
 RUN cd node-v6.10.3-linux-armv7l
+RUN ls 
 RUN cp -R * /usr/local/
 
-RUN node --version
+#RUN node --version
 RUN go --version
 # Get source code
 RUN go get github.com/grafana/grafana
