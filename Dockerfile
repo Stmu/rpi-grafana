@@ -2,10 +2,8 @@ FROM resin/raspberrypi3-golang
 MAINTAINER Stefan Mueller <stmu@stmu.net>
 
 
-RUN wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-armv7l.tar.xz
-RUN tar -xvf node-v6.10.3-linux-armv7l.tar.xz
-
-RUN cp -R node-v6.10.3-linux-armv7l/bin/* /usr/local/
+RUN apt-get update && apt-get install curl
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 RUN node --version
 RUN go version
