@@ -5,6 +5,8 @@ MAINTAINER Stefan Mueller <stmu@stmu.net>
 RUN apt-get update && apt-get install curl
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
+RUN apt-get install nodejs
+
 RUN node --version
 RUN go version
 # Get source code
