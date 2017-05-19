@@ -7,6 +7,7 @@ RUN tar -xvf node-v6.10.3-linux-armv7l.tar.xz
 RUN cd node-v6.10.3-linux-armv7l
 RUN cp -R * /usr/local/
 
+RUN node --version
 # Get source code
 RUN go get github.com/grafana/grafana
 
