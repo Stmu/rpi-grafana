@@ -13,8 +13,8 @@ script:
 - >
   if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-    TAG=$(grep "ENV MYSQL_VERSION" Dockerfile | awk 'NF>1{print $NF}')
+    #TAG=$(grep "ENV MYSQL_VERSION" Dockerfile | awk 'NF>1{print $NF}')
     docker tag stmu/rpi-grafana stmu/rpi-grafana:$TAG
-    docker push stmu/rpi-grafana:$TAG
+    docker push stmu/rpi-grafana:latest
     docker push stmu/rpi-grafana
   fi
