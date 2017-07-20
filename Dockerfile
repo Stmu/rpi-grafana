@@ -10,7 +10,7 @@ RUN apt-get install nodejs
 RUN node --version
 RUN go version
 # Get source code
-RUN go get github.com/grafana/grafana || true 
+RUN go get https://github.com/grafana/grafana
 
 RUN cd $GOPATH/src/github.com/grafana/grafana && go run build.go setup && go run build.go build
 
